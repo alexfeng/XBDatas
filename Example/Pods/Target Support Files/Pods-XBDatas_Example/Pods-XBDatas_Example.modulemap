@@ -1,0 +1,6 @@
+framework module Pods_XBDatas_Example {
+  umbrella header "Pods-XBDatas_Example-umbrella.h"
+
+  export *
+  module * { export * }
+}

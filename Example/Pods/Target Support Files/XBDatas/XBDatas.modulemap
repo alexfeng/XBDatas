@@ -1,0 +1,6 @@
+framework module XBDatas {
+  umbrella header "XBDatas-umbrella.h"
+
+  export *
+  module * { export * }
+}
