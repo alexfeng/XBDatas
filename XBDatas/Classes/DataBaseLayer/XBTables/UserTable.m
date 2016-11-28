@@ -23,8 +23,16 @@ DEFINE_SINGLETON_FOR_CLASS(UserTable)
     return self;
 }
 
-- (void)createTableIfNotExist {
-    [[XBDBHelper sharedXBDBHelper] excuteSql:[NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS '%@' ( 'userId' INTEGER,'name' text,'age' INTEGER )",self.tableName]];
+// MARK: XBBaseTableProtocol Methods
+- (BOOL)createTableIfNotExist {
+   return [[XBDBHelper sharedXBDBHelper] excuteSql:[NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS '%@' ( 'userId' INTEGER,'name' text,'age' INTEGER )",self.tableName]];
+}
+
+/**
+ *  根据DB版本更新表
+ */
+- (void)updateTableAccordingToDbVersion {
+    
 }
 
 @end

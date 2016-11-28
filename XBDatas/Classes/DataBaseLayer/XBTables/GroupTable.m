@@ -24,9 +24,8 @@ DEFINE_SINGLETON_FOR_CLASS(GroupTable)
 }
 
 // MARK: XBBaseTableProtocol Methods
-
-- (void)createTableIfNotExist {
-    [[XBDBHelper sharedXBDBHelper] excuteSql:[NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS '%@' ( 'groupId' INTEGER,'groupName' text)" , self.tableName]];
+- (BOOL)createTableIfNotExist {
+    return [[XBDBHelper sharedXBDBHelper] excuteSql:[NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS '%@' ( 'groupId' INTEGER,'groupName' text)" , self.tableName]];
 }
 
 /**
