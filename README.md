@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # XBDatas
 
 [![CI Status](http://img.shields.io/travis/fengxiangbo/XBDatas.svg?style=flat)](https://travis-ci.org/fengxiangbo/XBDatas)
@@ -27,3 +28,6 @@ fengxiangbo, fengxiangbo@thinkjoy.cn
 ## License
 
 XBDatas is available under the MIT license. See the LICENSE file for more info.
+=======
+# XBDatas
+>>>>>>> 8d28eb6051becda378d60f50f3c1ff04137867c4
