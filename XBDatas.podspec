@@ -25,7 +25,7 @@ Pod::Spec.new do |s|
   #   * Write the description between the DESC delimiters below.
   #   * Finally, don't worry about the indent, CocoaPods strips it!
    s.description     = <<-DESC
-   The open source for upgrade app solution with FMDB.
+   The open source for upgrade app solution with FMDB/SQLite.
                        DESC
 
   s.homepage         = "https://github.com/alexfeng/XBDatas"
