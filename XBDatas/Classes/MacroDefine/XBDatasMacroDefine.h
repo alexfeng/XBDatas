@@ -38,10 +38,6 @@ return shared##className; \
 #pragma mark - DB相关宏
 // MARK: DBDateFormatter
 
-// MARK: 数据表宏
-//⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇DB Table Macro Define⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇
-#define kAllTableName @[@"UserTable",@"GroupTable"]
-//⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆DB Table Macro Define⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆
 //==============================================================================================================
 
 #endif /* XBDatasMacroDefine_h */

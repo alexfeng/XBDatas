@@ -18,7 +18,7 @@ DECLARE_SINGLETON_FOR_CLASS(XBDBHelper)
 /**
  *  创建所有表
  */
-+ (void)createAllTable;
++ (void)createAllTables:(NSArray *)tableNames;
 
 /**
  *  创建数据库

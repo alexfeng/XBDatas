@@ -13,7 +13,7 @@
 
 // MARK: 子类实现
 - (BOOL)cleanTable {
-    [[XBDBHelper sharedXBDBHelper] deleteDataFromTable:self.tableName];
+    return [[XBDBHelper sharedXBDBHelper] deleteDataFromTable:self.tableName];
 }
 
 

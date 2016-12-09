@@ -28,8 +28,9 @@
 @implementation XBDBHelper
 
 // MARK: Class Methods
-+ (void)createAllTable {
-    for (NSString *tableName in kAllTableName) {
+
++ (void)createAllTables:(NSArray *)tableNames {
+    for (NSString *tableName in tableNames) {
         Class class = NSClassFromString(tableName);
         NSString *singletonSelStr = [NSString stringWithFormat:@"shared%@", tableName];
         SEL singletonSel = NSSelectorFromString(singletonSelStr);
@@ -95,7 +96,6 @@ DEFINE_SINGLETON_FOR_CLASS(XBDBHelper)
         // 未加密数据库数据加密迁移
         [self encryptDBFromOldDbPath:fullDBPath withEncryptKey:dbEncryptKey];
     }
-    
     _dbQueue = [FMDatabaseQueue databaseQueueWithPath:fullDBPath];
     NSLog(@"db path:%@\n", fullDBPath);
     NSLog(@"db key:%@\n",dbEncryptKey);
