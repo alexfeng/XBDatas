@@ -1,7 +1,16 @@
 PODS:
-  - XBDatas (0.1.0)
+  - FMDB/SQLCipher (2.6.2):
+    - SQLCipher
+  - SQLCipher (3.4.0):
+    - SQLCipher/standard (= 3.4.0)
+  - SQLCipher/common (3.4.0)
+  - SQLCipher/standard (3.4.0):
+    - SQLCipher/common
+  - XBDatas (0.1.1):
+    - FMDB/SQLCipher
 
 DEPENDENCIES:
+  - FMDB/SQLCipher
   - XBDatas (from `../`)
 
 EXTERNAL SOURCES:
@@ -9,8 +18,10 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  XBDatas: 7cd922a6f2af3a00771407a785e65202e68e238c
+  FMDB: 854a0341b4726e53276f2a8996f06f1b80f9259a
+  SQLCipher: 4c768761421736a247ed6cf412d9045615d53dff
+  XBDatas: 30397a129dc4b37767259a83f2c17bd2fd596ee4
 
-PODFILE CHECKSUM: 71650b54b4736e817ca378b645b12cf10005fee5
+PODFILE CHECKSUM: 397d2111d6555202ee5b964ac20a5c9168f3e477
 
 COCOAPODS: 1.1.1

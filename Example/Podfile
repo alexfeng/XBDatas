@@ -2,10 +2,7 @@ use_frameworks!
 
 target 'XBDatas_Example' do
   pod 'XBDatas', :path => '../'
-
   target 'XBDatas_Tests' do
     inherit! :search_paths
-
-    
   end
 end

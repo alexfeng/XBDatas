@@ -7,12 +7,22 @@
 //
 
 #import "XBAppDelegate.h"
+#import <XBDatas/XBDBHelper.h>
 
 @implementation XBAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    // 未加密的数据库 1.创建或升级数据库文件
+    [[XBDBHelper sharedXBDBHelper] createDatabaseWithDBName:@"public"];
+    // 加密的数据库 1.1创建或升级未加密的数据库到加密的数据库
+//    [[XBDBHelper sharedXBDBHelper] createDatabaseWithDBName:@"public" withDBKey:@"123456"];
+//    // 2.构建数据表数组
+    NSArray *allTableName = @[@"UserTable",@"GroupTable"];
+//    // 3.构建数据表
+    [XBDBHelper createAllTables:allTableName];
+    
     return YES;
 }
 

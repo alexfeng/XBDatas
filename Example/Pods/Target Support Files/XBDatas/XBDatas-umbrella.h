@@ -4,8 +4,6 @@
 
 #import "XBBaseTable.h"
 #import "XBDBHelper.h"
-#import "GroupTable.h"
-#import "UserTable.h"
 #import "XBDatasMacroDefine.h"
 
 FOUNDATION_EXPORT double XBDatasVersionNumber;

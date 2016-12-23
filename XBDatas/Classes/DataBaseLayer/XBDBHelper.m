@@ -30,21 +30,25 @@
 // MARK: Class Methods
 
 + (void)createAllTables:(NSArray *)tableNames {
-    for (NSString *tableName in tableNames) {
+    for (NSString *tableName in tableNames)
+    {
         Class class = NSClassFromString(tableName);
         NSString *singletonSelStr = [NSString stringWithFormat:@"shared%@", tableName];
         SEL singletonSel = NSSelectorFromString(singletonSelStr);
         
-        if (class && [class respondsToSelector:singletonSel]) {
+        if (class && [class respondsToSelector:singletonSel])
+        {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
             XBBaseTable *classObj = [class performSelector:singletonSel];
-            if (classObj) {
+            if (classObj)
+            {
                 [classObj createAndUpgradeTable];
             }
 #pragma clang diagnostic pop
         }
-        else {
+        else
+        {
             NSLog(@"error: no table named \"%@\"", tableName);
         }
     }
@@ -68,7 +72,6 @@ DEFINE_SINGLETON_FOR_CLASS(XBDBHelper)
  *  @param DBPath 数据库文件路径
  */
 - (void)createDatabaseWithDBName:(NSString *)dbName {
-    
     [self createDatabaseWithDBName:dbName withDBKey:nil];
 }
 
@@ -81,32 +84,31 @@ DEFINE_SINGLETON_FOR_CLASS(XBDBHelper)
 - (void)createDatabaseWithDBName:(NSString *)dbName withDBKey:(NSString *)dbKey {
     NSArray *documentPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,  NSUserDomainMask,YES);
     NSString *ourDocumentPath = [documentPaths objectAtIndex:0];
-    _dbName = dbName;
-    NSString *dbFileName = _dbName;
-    NSString *fullDBPath = [ourDocumentPath stringByAppendingFormat:@"/%@.db",dbFileName];
-    
-    NSString *dbEncryptKey = nil;
+    _dbName = [dbName copy];
+    NSString *fullDBPath = [ourDocumentPath stringByAppendingFormat:@"/%@.db",_dbName];
     
     NSDateFormatter *formater = [[NSDateFormatter alloc] init];
     formater.dateFormat = XBDBDATE_FORMAT;
     
     if (dbKey)
     {
-        dbEncryptKey = [dbKey copy];
         // 未加密数据库数据加密迁移
-        [self encryptDBFromOldDbPath:fullDBPath withEncryptKey:dbEncryptKey];
+        [self encryptDBFromOldDbPath:fullDBPath withEncryptKey:dbKey];
     }
     _dbQueue = [FMDatabaseQueue databaseQueueWithPath:fullDBPath];
     NSLog(@"db path:%@\n", fullDBPath);
-    NSLog(@"db key:%@\n",dbEncryptKey);
+    NSLog(@"db key:%@\n",dbKey);
     
     __block BOOL rs = NO;
     [_dbQueue inDatabase:^(FMDatabase *db) {
         [db setDateFormat:formater];
         
-        if (dbEncryptKey)
+        if (dbKey)
         {
-            rs = [db open] && [db setKey:dbEncryptKey] && [db goodConnection];
+            BOOL openB = [db open];
+            BOOL keyB = [db setKey:dbKey];
+            BOOL connB = [db goodConnection];
+            rs = [db open] && [db setKey:dbKey] && [db goodConnection];
         }
         else
         {
@@ -114,7 +116,8 @@ DEFINE_SINGLETON_FOR_CLASS(XBDBHelper)
         }
     }];
     
-    if (!rs) {
+    if (!rs)
+    {
         //这里只是预防万一，一般不会到这里。
         //如果还是打不开，那原因就不可控了，就尝试重新建数据库了
         
@@ -123,8 +126,9 @@ DEFINE_SINGLETON_FOR_CLASS(XBDBHelper)
         [_dbQueue inDatabase:^(FMDatabase *db) {
             [db setDateFormat:formater];
             
-            if (dbEncryptKey) {
-                [db open] && [db setKey:dbEncryptKey];
+            if (dbKey)
+            {
+                [db open] && [db setKey:dbKey];
             }
             else
             {
@@ -187,7 +191,8 @@ DEFINE_SINGLETON_FOR_CLASS(XBDBHelper)
     NSString *tmppath = [self changeDatabasePath:oldDbPath];
     
     sqlite3 *unencrypted_DB;
-    if (sqlite3_open([tmppath UTF8String], &unencrypted_DB) == SQLITE_OK) {
+    if (sqlite3_open([tmppath UTF8String], &unencrypted_DB) == SQLITE_OK)
+    {
         NSLog(@"Database Opened");
         // Attach empty encrypted database to unencrypted database
         sqlite3_exec(unencrypted_DB, [[NSString stringWithFormat:@"ATTACH DATABASE '%@' AS encrypted KEY '%@'", oldDbPath, encryptKey] UTF8String], NULL, NULL, NULL);
@@ -202,21 +207,25 @@ DEFINE_SINGLETON_FOR_CLASS(XBDBHelper)
         //删除以前未加密的数据库
         [fileManager removeItemAtPath:tmppath error:nil];
     }
-    else {
+    else
+    {
         sqlite3_close(unencrypted_DB);
         NSAssert1(NO, @"Failed to open database with message '%s'.", sqlite3_errmsg(unencrypted_DB));
     }
 }
 
-- (NSString *)changeDatabasePath:(NSString *)path{
-    NSError * err = NULL;
-    NSFileManager * fm = [[NSFileManager alloc] init];
+- (NSString *)changeDatabasePath:(NSString *)path {
+    NSError *err = NULL;
+    NSFileManager *fm = [[NSFileManager alloc] init];
     NSString *tmppath = [NSString stringWithFormat:@"%@.tmp",path];
     BOOL result = [fm moveItemAtPath:path toPath:tmppath error:&err];
-    if(!result){
+    if(!result)
+    {
         NSLog(@"Error: %@", err);
         return nil;
-    }else{
+    }
+    else
+    {
         return tmppath;
     }
 }

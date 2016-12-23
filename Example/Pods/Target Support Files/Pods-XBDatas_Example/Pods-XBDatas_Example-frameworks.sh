@@ -84,8 +84,12 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_framework "$BUILT_PRODUCTS_DIR/FMDB/FMDB.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/SQLCipher/SQLCipher.framework"
   install_framework "$BUILT_PRODUCTS_DIR/XBDatas/XBDatas.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_framework "$BUILT_PRODUCTS_DIR/FMDB/FMDB.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/SQLCipher/SQLCipher.framework"
   install_framework "$BUILT_PRODUCTS_DIR/XBDatas/XBDatas.framework"
 fi
