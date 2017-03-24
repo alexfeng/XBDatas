@@ -175,6 +175,18 @@ DEFINE_SINGLETON_FOR_CLASS(XBDBHelper)
     return rs;
 }
 
+- (NSArray *)fetchDataWithSql:(NSString *)sql
+                    converter:(NSArray *(^)(FMResultSet *fmResultSet))converter
+{
+    __block NSArray *rs;
+    [_dbQueue inDatabase:^(FMDatabase *db) {
+        FMResultSet *ptr = [db executeQuery:sql];
+        rs = converter(ptr);
+        [ptr close];
+    }];
+    return rs;
+}
+
 // MARK: private Methods
 
 - (void)encryptDBFromOldDbPath:(NSString *)oldDbPath withEncryptKey:(NSString *)encryptKey {

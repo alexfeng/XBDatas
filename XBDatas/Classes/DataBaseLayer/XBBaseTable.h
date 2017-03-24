@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <FMDB/FMDB.h>
 
 
 #define PRIME_KEY_FLAG(ATTR_TYPE) [ATTR_TYPE stringByAppendingString:@" PRIMARY KEY"]

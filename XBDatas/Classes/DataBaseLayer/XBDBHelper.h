@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <XBDatas/XBDatasMacroDefine.h>
+#import <SQLCipher/FMResultSet.h>
 
 // 所有表名，用来统一生成表名类名，新表加入
 
@@ -48,5 +49,11 @@ DECLARE_SINGLETON_FOR_CLASS(XBDBHelper)
  *  执行sql语句
  */
 - (BOOL)excuteSql:(NSString *)excuteSql;
+
+
+/**
+ *  查询sql语句
+ */
+- (NSArray *)fetchDataWithSql:(NSString *)sql converter:(NSArray *(^)(FMResultSet *fmResultSet))converter;
 
 @end
