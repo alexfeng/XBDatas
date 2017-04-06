@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name             = 'XBDatas'
-  s.version          = '0.1.3'
+  s.version          = '0.1.4'
   s.summary          = 'The open source for upgrade app solution with FMDB.'
 
   # This description is used to generate tags and improve search results.
@@ -42,7 +42,7 @@ Pod::Spec.new do |s|
   #  the deployment target. You can optionally include the target after the platform.
   #
 
-  s.platform     = :ios, '8.0'
+  s.platform     = :ios, '7.0'
   s.requires_arc = true
   # s.platform     = :ios, "5.0"
 
@@ -52,7 +52,7 @@ Pod::Spec.new do |s|
   # s.watchos.deployment_target = "2.0"
   # s.tvos.deployment_target = "9.0"
 
-  s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '7.0'
 
   s.source       = { :git => 'https://github.com/alexfeng/XBDatas.git', :tag => s.version.to_s }
   s.source_files = 'XBDatas/Classes/**/*'
