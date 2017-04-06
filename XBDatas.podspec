@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name             = 'XBDatas'
-  s.version          = '0.1.4'
+  s.version          = '0.1.6'
   s.summary          = 'The open source for upgrade app solution with FMDB.'
 
   # This description is used to generate tags and improve search results.
