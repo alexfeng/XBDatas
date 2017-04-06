@@ -43,7 +43,7 @@ Pod::Spec.new do |s|
   #
 
   s.platform     = :ios, '7.0'
-  s.requires_arc = true
+  # s.requires_arc = true
   # s.platform     = :ios, "5.0"
 
   #  When using multiple platforms
