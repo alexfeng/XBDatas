@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <XBDatas/XBDatasMacroDefine.h>
-#import <SQLCipher/FMResultSet.h>
+#import <FMDB/FMDB.h>
 
 // 所有表名，用来统一生成表名类名，新表加入
 
